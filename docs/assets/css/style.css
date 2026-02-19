@@ -65,7 +65,7 @@ body {
 .container {
   flex: 1;
   width: 100%;
-  max-width: 960px;
+  max-width: 72rem;
   margin: 0 auto;
   padding: 2rem 1.5rem 4rem;
   box-sizing: border-box;
@@ -329,6 +329,71 @@ code {
   margin-top: 0.5rem;
   font-style: italic;
 }
+
+/* Features page grid – two columns, large cards for clear images */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  margin: 1.5rem 0;
+}
+.feature-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14), 0 4px 10px rgba(0, 0, 0, 0.08);
+  transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.2s ease;
+}
+.feature-card:hover {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.22), 0 10px 20px rgba(0, 0, 0, 0.12);
+  transform: translateY(-8px) scale(1.02);
+  border-color: var(--border);
+}
+.feature-card__image-wrap {
+  aspect-ratio: 16 / 9;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 180px;
+}
+.feature-card__image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.feature-card__body {
+  padding: 1.5rem 1.5rem 1.75rem;
+  flex: 1;
+}
+.feature-card__title {
+  margin: 0 0 0.75rem;
+  font-size: 1.25rem;
+  color: var(--text);
+}
+.feature-card__body ul {
+  margin: 0;
+  padding-left: 1.25rem;
+  color: var(--text-muted);
+  font-size: 0.9375rem;
+  line-height: 1.55;
+}
+.feature-card__body ul li {
+  margin-bottom: 0.35rem;
+}
+.feature-card__body ul li:last-child {
+  margin-bottom: 0;
+}
+@media (max-width: 640px) {
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* Command list (commands page) */
 .command-list {
   margin: 0.75rem 0 1rem;
