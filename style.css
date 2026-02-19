@@ -38,6 +38,25 @@ body {
   padding: 2rem 1.5rem 4rem;
   box-sizing: border-box;
 }
+/* Top bar: one row – header (wraps) left, theme button right. Same on mobile and desktop. */
+.top-bar {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto;
+  grid-template-areas: "header theme";
+  gap: 0 1rem;
+  margin-bottom: 0;
+}
+.top-bar__theme {
+  grid-area: theme;
+  justify-self: end;
+  align-self: start;
+  flex-shrink: 0;
+}
+.top-bar__header {
+  grid-area: header;
+  min-width: 0;
+}
 /* Smooth theme transition: only active during switch so hovers stay instant */
 body.theme-switching,
 body.theme-switching * {
@@ -45,19 +64,15 @@ body.theme-switching * {
   transition-property: background-color, color, border-color !important;
   transition-timing-function: ease !important;
 }
-header {
+.site-header {
   margin-bottom: 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 1rem;
-  flex-wrap: wrap;
 }
+/* Header = one anchored unit: avatar + title stay together, title text wraps inside */
 .header-title-row {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.75rem;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 .header-title-row img {
   width: 2.5rem;
@@ -66,14 +81,17 @@ header {
   object-fit: cover;
   flex-shrink: 0;
 }
-header h1 {
+.site-header h1 {
   font-size: 1.75rem;
   font-weight: 700;
   margin: 0 0 0.25rem;
   letter-spacing: -0.02em;
-  display: inline-block;
   padding-bottom: 0.2rem;
   border-bottom: 1px solid var(--border);
+  min-width: 0;
+  flex: 1 1 auto;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 .effective {
   font-size: 0.875rem;
@@ -226,7 +244,7 @@ footer {
   display: block;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   table {
     font-size: 0.8125rem;
   }

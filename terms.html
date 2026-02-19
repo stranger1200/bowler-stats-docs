@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bowler Stats - Terms of Service</title>
+  <link rel="icon" href="bowler-icon.png" type="image/png">
+  <meta property="og:image" content="bowler-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
@@ -12,16 +14,20 @@
 </head>
 <body>
   <div class="container">
-    <header>
-      <div class="header-title-row">
-        <img id="bot-avatar" src="" alt="" width="40" height="40">
-        <h1>Bowler Stats - Terms of Service</h1>
+    <div class="top-bar">
+      <div class="top-bar__theme">
+        <button type="button" class="theme-toggle" aria-label="Toggle light/dark mode">
+          <span class="icon-sun" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg></span>
+          <span class="icon-moon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span>
+        </button>
       </div>
-      <button type="button" class="theme-toggle" aria-label="Toggle light/dark mode">
-        <span class="icon-sun" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg></span>
-        <span class="icon-moon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span>
-      </button>
-    </header>
+      <header class="top-bar__header site-header">
+        <div class="header-title-row">
+          <img id="bot-avatar" src="" alt="" width="40" height="40">
+          <h1>Bowler Stats - Terms of Service</h1>
+        </div>
+      </header>
+    </div>
     <script>
       (function () {
         var BOT_USER_ID = '1267307127609884793';
@@ -57,7 +63,7 @@
       <ul>
         <li><strong>Abuse bugs or exploits:</strong> Do not intentionally exploit errors, bugs, or vulnerabilities in the bot. If you find a bug, please report it via the support server so it can be fixed.</li>
         <li><strong>Use automation or self-bots:</strong> Do not use scripts, bots, or other automated means to interact with Bowler Stats.</li>
-        <li><strong>Violate Discord’s terms:</strong> Your use of the bot must comply with the <a href="https://discord.com/terms" target="_blank" rel="noopener">Discord Terms of Service</a> and <a href="https://discord.com/guidelines" target="_blank" rel="noopener">Community Guidelines</a>.</li>
+        <li><strong>Violate Discord's terms:</strong> Your use of the bot must comply with the <a href="https://discord.com/terms" target="_blank" rel="noopener">Discord Terms of Service</a> and <a href="https://discord.com/guidelines" target="_blank" rel="noopener">Community Guidelines</a>.</li>
         <li><strong>Harass or abuse others:</strong> Do not use the bot to harass, spam, or otherwise harm other users or the developer.</li>
         <li><strong>Resell or commercialise the service:</strong> Do not attempt to resell, rebrand, or commercially exploit Bowler Stats.</li>
       </ul>
