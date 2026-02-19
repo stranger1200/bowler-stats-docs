@@ -4,47 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bowler Stats - Terms of Service</title>
-  <link rel="icon" href="bowler-icon.png" type="image/png">
-  <meta property="og:image" content="bowler-icon.png">
+  <link rel="icon" href="assets/images/bowler-icon.png" type="image/png">
+  <meta property="og:image" content="assets/images/bowler-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
-  <link href="style.css" rel="stylesheet">
-  <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('bowler-stats-theme') || 'dark');</script>
+  <link href="assets/css/style.css" rel="stylesheet">
 </head>
 <body>
-  <div class="container">
-    <div class="top-bar">
-      <div class="top-bar__theme">
-        <button type="button" class="theme-toggle" aria-label="Toggle light/dark mode">
-          <span class="icon-sun" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg></span>
-          <span class="icon-moon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span>
-        </button>
-      </div>
-      <header class="top-bar__header site-header">
-        <div class="header-title-row">
-          <img id="bot-avatar" src="" alt="" width="40" height="40">
-          <h1>Bowler Stats - Terms of Service</h1>
-        </div>
-      </header>
-    </div>
-    <script>
-      (function () {
-        var BOT_USER_ID = '1267307127609884793';
-        var BOT_AVATAR_HASH = 'ce24d7a3738c1ba8251322ee7cf907fe';
-        var img = document.getElementById('bot-avatar');
-        img.alt = 'Bowler Stats bot avatar';
-        if (BOT_AVATAR_HASH) {
-          img.src = 'https://cdn.discordapp.com/avatars/' + BOT_USER_ID + '/' + BOT_AVATAR_HASH + '.png?size=80';
-        } else {
-          img.style.display = 'none';
-        }
-      })();
-    </script>
-    <script src="theme.js"></script>
+  <div id="main-content">
     <p class="effective">Effective Date: January 25, 2026</p>
 
     <section>
+      <h1 class="page-title">Terms of Service</h1>
       <h2>1. Acceptance & Description of Service</h2>
       <p class="intro">Bowler Stats is a fan-made Discord bot that lets you view and share Clash Royale stats. By inviting or using the bot, you agree to these Terms of Service and to our <a href="privacy.html">Privacy Policy</a>.</p>
       <div class="disclaimer">
@@ -92,10 +64,7 @@
         <p style="margin:0.5rem 0 0;"><strong>Support server:</strong> <a href="https://discord.gg/kUARCbYxR4" target="_blank" rel="noopener">https://discord.gg/kUARCbYxR4</a></p>
       </div>
     </section>
-
-    <footer>
-      <p>Bowler Stats • Terms of Service • <a href="privacy.html">Privacy Policy</a>.</p>
-    </footer>
   </div>
+  <script src="assets/js/shared.js"></script>
 </body>
 </html>

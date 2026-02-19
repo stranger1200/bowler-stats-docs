@@ -1,4 +1,5 @@
 # Bowler Stats Docs
-Documentation for Bowler Stats discord bot including Terms of Service and Privacy Policy
 
-Join the discord server at https://discord.gg/kUARCbYxR4/
+Website for the Bowler Stats Discord bot (features, invite, Privacy Policy, Terms of Service). Website files are in **`site/`**.
+
+**Support server:** https://discord.gg/kUARCbYxR4/

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Commands – Bowler Stats</title>
+  <link rel="icon" href="assets/images/bowler-icon.png" type="image/png">
+  <meta name="description" content="List of Bowler Stats Discord bot slash commands: profile, battlelog, tag, deck, progress, achievements and more.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+  <div id="main-content">
+    <h1 class="page-title">Commands</h1>
+    <p class="intro">Use these slash commands in Discord after inviting the bot. You can also open the <strong>Help</strong> menu in-app via <code>/help</code> to browse or search command pages.</p>
+
+    <section>
+      <h2>Profile &amp; stats</h2>
+      <dl class="command-list">
+        <dt><code>/profile</code></dt>
+        <dd>View your Clash Royale profile (or another player's). Shows trophies, arena, wins/losses, clan, Path of Legends, masteries and card stats. Optional: <code>user</code> or <code>tag</code>.</dd>
+        <dt><code>/battlelog</code></dt>
+        <dd>View your Clash Royale battle log (or another player's). Browse recent battles, switch rounds in duels, and use <strong>View Summary</strong> for win rates and card performance from your last 25 battles. Optional: <code>user</code> or <code>tag</code>.</dd>
+        <dt><code>/deck</code></dt>
+        <dd>View Clash Royale decks. Subcommands: <strong>show</strong> – your most used deck (or another player's, optional deck URL); <strong>latest</strong> – deck from your most recent battle; <strong>random</strong> – random deck with random tower troop; <strong>ranked</strong> – random deck from a top Ranked player.</dd>
+        <dt><code>/progress</code></dt>
+        <dd>View your Clash Royale progress (or another player's): card levels, upgrade costs, masteries, available upgrades and misc achievements. Optional: <code>user</code> or <code>tag</code>.</dd>
+      </dl>
+    </section>
+
+    <section>
+      <h2>Account &amp; data</h2>
+      <dl class="command-list">
+        <dt><code>/tag</code></dt>
+        <dd>Manage your saved Clash Royale player tags. <strong>save</strong> – save a tag (optional name, e.g. Main/Mini); <strong>remove</strong> – remove a saved tag; <strong>select</strong> – set which account is active; <strong>list</strong> – list all saved tags. Supporters can save more tags.</dd>
+        <dt><code>/data</code></dt>
+        <dd>Manage your stored data. <strong>view</strong> – see what the bot stores for your account; <strong>delete</strong> – permanently delete your saved data; <strong>info</strong> – information about what data we collect.</dd>
+        <dt><code>/settings</code></dt>
+        <dd>Customise your experience: profile colour (Patreon: custom hex), public profile, private responses (ephemeral), anonymous mode (hide in-game identifiers), display alt text on images, and show bot tips.</dd>
+      </dl>
+    </section>
+
+    <section>
+      <h2>Achievements</h2>
+      <dl class="command-list">
+        <dt><code>/achievement</code></dt>
+        <dd>View and manage your achievements. <strong>claim</strong> – check and claim available achievements; <strong>list</strong> – view all available achievements; <strong>progress</strong> – view progress towards unclaimed achievements.</dd>
+      </dl>
+    </section>
+
+    <section>
+      <h2>Utility &amp; support</h2>
+      <dl class="command-list">
+        <dt><code>/help</code></dt>
+        <dd>View help information for bot commands. Use the dropdown to switch pages, or use the <code>view</code> option to search for a specific command or page.</dd>
+        <dt><code>/invite</code></dt>
+        <dd>Get an invite link to add the bot to other servers.</dd>
+        <dt><code>/ping</code></dt>
+        <dd>Check the bot's latency and the ping to the Clash Royale API.</dd>
+        <dt><code>/patreon</code></dt>
+        <dd>View information about supporting the bot on Patreon and the perks (e.g. custom colours, more tag slots, lower cooldowns).</dd>
+      </dl>
+    </section>
+
+    <section>
+      <h2>Server settings</h2>
+      <dl class="command-list">
+        <dt><code>/friend-links</code></dt>
+        <dd>Manage automatic friend link profile detection for this server (requires Manage Server). <strong>toggle</strong> – enable or disable; <strong>whitelist-channel</strong> / <strong>blacklist-channel</strong> – limit which channels are monitored; <strong>status</strong> – view current settings.</dd>
+      </dl>
+    </section>
+
+    <section>
+      <h2>Context menu</h2>
+      <p>Right‑click a user in Discord and use <strong>Apps</strong> (or <strong>Bowler Stats</strong>) to run:</p>
+      <ul>
+        <li><strong>View Profile</strong> – View that user's Clash Royale profile (uses their saved tag).</li>
+        <li><strong>View Battle Log</strong> – View that user's battle log (uses their saved tag).</li>
+      </ul>
+    </section>
+  </div>
+  <script src="assets/js/shared.js"></script>
+</body>
+</html>
