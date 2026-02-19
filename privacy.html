@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bowler Stats - Privacy Policy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+  <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('bowler-stats-theme') || 'dark');</script>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="header-title-row">
+        <img id="bot-avatar" src="" alt="" width="40" height="40">
+        <h1>Bowler Stats - Privacy Policy</h1>
+      </div>
+      <button type="button" class="theme-toggle" aria-label="Toggle light/dark mode">
+        <span class="icon-sun" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg></span>
+        <span class="icon-moon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span>
+      </button>
+    </header>
+    <p class="effective">Effective Date: Feburary 19th, 2026</p>
+    <script>
+      (function () {
+        var BOT_USER_ID = '1267307127609884793';
+        var BOT_AVATAR_HASH = 'ce24d7a3738c1ba8251322ee7cf907fe';
+        var img = document.getElementById('bot-avatar');
+        img.alt = 'Bowler Stats bot avatar';
+        if (BOT_AVATAR_HASH) {
+          img.src = 'https://cdn.discordapp.com/avatars/' + BOT_USER_ID + '/' + BOT_AVATAR_HASH + '.png?size=80';
+        } else {
+          img.style.display = 'none';
+        }
+      })();
+    </script>
+    <script src="theme.js"></script>
+
+    <section>
+      <h2>1. Introduction</h2>
+      <p class="intro">Welcome to Bowler Stats. I am committed to providing an amazing experience for viewing and sharing your Clash Royale stats while being privacy first. This policy explains what data the bot collects, why it needs it, and your rights regarding it.</p>
+      <div class="disclaimer">
+        <strong>Disclaimer:</strong> Bowler Stats is a fan-made project and is not affiliated with, endorsed, or sponsored by Supercell. I strictly operate within the guidelines of the <a href="https://supercell.com/en/fan-content-policy/" target="_blank" rel="noopener">Supercell Fan Content Policy</a>.
+      </div>
+    </section>
+
+    <section>
+      <h2>2. Information I Collect & Why</h2>
+      <p>The bot only collects data that is strictly necessary to work for you. It does not collect personally identifiable information (PII) like your real name or email address.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Data Type</th>
+            <th>Purpose</th>
+            <th>Retention</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Discord User ID</td>
+            <td>Links your saved tags, custom settings, and achievements to your account.</td>
+            <td>Until requested deletion.</td>
+          </tr>
+          <tr>
+            <td>Clash Royale Player Tags</td>
+            <td>Allows the bot to fetch your public profile, battle logs, and chest cycle from the Supercell API.</td>
+            <td>Indefinite (user-managed).</td>
+          </tr>
+          <tr>
+            <td>Custom Colours (Patreon)</td>
+            <td>Stores your preferred hexadecimal colour code for profile customisation.</td>
+            <td>For the duration of your support.</td>
+          </tr>
+          <tr>
+            <td>bot achievements</td>
+            <td>Tracks milestones and command usage to provide progression features.</td>
+            <td>Indefinite.</td>
+          </tr>
+          <tr>
+            <td>Discord Guild IDs</td>
+            <td>Manages server-specific configurations (eg. whitelisting).</td>
+            <td>Deleted when the bot leaves.</td>
+          </tr>
+          <tr>
+            <td>Error Logs</td>
+            <td>Used for debugging and stability. Contains technical data like command names and stack traces.</td>
+            <td>Stored for technical analysis.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>3. How Your Data is Used</h2>
+      <p>Your data is used exclusively to:</p>
+      <ul>
+        <li>Deliver core features, such as displaying Clash Royale stats.</li>
+        <li>Personalise your experience through custom colours and achievements.</li>
+        <li>Maintain server-specific settings.</li>
+        <li>Diagnose technical issues and improve bot performance.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>4. Data Sharing & Third Parties</h2>
+      <ul>
+        <li><strong>Supercell:</strong> The bot transmits your Player Tag to the official Supercell API to retrieve public game data. It never asks for, stores, or accesses your Supercell login credentials.</li>
+        <li><strong>No Third-Party Sales:</strong> The bot does not sell, rent, or trade your data. Your information is never shared with advertisers or third-party brokers.</li>
+        <li><strong>Legal Necessity:</strong> Data may be disclosed only if required by law or in response to a valid request by public authorities.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>5. Your Rights & Data Control</h2>
+      <p>You have full control over your information. You can manage your data directly through the bot:</p>
+      <ul>
+        <li><strong>View Your Data:</strong> Use <code>/data view</code> to see exactly what information the bot has stored associated with your Discord account.</li>
+        <li><strong>Delete Your Data:</strong> Use <code>/data delete</code> to permanently remove your saved player tags, custom settings, and achievements from its database.</li>
+      </ul>
+      <p class="note">Note: Deletion is irreversible. If you use the bot again, a new, blank profile will be created.</p>
+      <p>If the bot is removed from a Discord server, all data specific to that server (Guild ID and configurations) is automatically purged from its systems.</p>
+      <p>To exercise your right to access or for any manual data enquiries that cannot be resolved via commands, please contact me via the support server.</p>
+    </section>
+
+    <section>
+      <h2>6. Policy Changes</h2>
+      <p>I may update this policy periodically. Significant changes will be announced in my official Discord server. By continuing to use Bowler Stats, you automatically agree to the updated privacy policy.</p>
+    </section>
+
+    <section>
+      <h2>7. Contact Information</h2>
+      <p>If you have questions or concerns, I’d be happy to help. I do not accept random friend requests, so the best way to reach me is to send a message request or ping me in the support server:</p>
+      <div class="contact-box">
+        <p style="margin:0;"><strong>Discord username:</strong> stranger1200</p>
+        <p style="margin:0.5rem 0 0;"><strong>Support server:</strong> <a href="https://discord.gg/kUARCbYxR4" target="_blank" rel="noopener">https://discord.gg/kUARCbYxR4</a></p>
+      </div>
+    </section>
+
+    <footer>
+      <p>Bowler Stats • Privacy Policy • <a href="terms.html">Terms of Service</a>.</p>
+    </footer>
+  </div>
+</body>
+</html>
