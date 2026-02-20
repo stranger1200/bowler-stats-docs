@@ -24,12 +24,17 @@
               '<h1>Bowler Stats</h1>' +
             '</a>' +
           '</header>' +
+          '<button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">' +
+            '<span class="hamburger-line"></span>' +
+            '<span class="hamburger-line"></span>' +
+            '<span class="hamburger-line"></span>' +
+          '</button>' +
           '<nav class="top-bar__nav site-nav" aria-label="Site">' +
             '<ul>' +
               '<li><a href="index.html"><svg class="nav-icon" width="18" height="18" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1L2 6v8h4v-5h4v5h4V6L8 1z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg> Home</a></li>' +
               '<li><a href="features.html"><svg class="nav-icon" width="18" height="18" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1l2 5h5l-4 3 1.5 5-4.5-3-4.5 3L6 9l-4-3h5l2-5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg> Features</a></li>' +
               '<li><a href="commands.html"><svg class="nav-icon" width="18" height="18" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="3" width="12" height="10" rx="1" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M5 7h6M5 10h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> Commands</a></li>' +
-              '<li><a href="https://discord.com/oauth2/authorize?client_id=1267307127609884793" target="_blank" rel="noopener"><svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8,4 L18,4 C19.1046,4 20,4.89543 20,6 L20,18 C20,19.1046 19.1046,20 18,20 L8,20" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/><line x1="4" y1="12" x2="14" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M11,8 L13.5858,10.5858 C14.3668,11.3668 14.3668,12.6332 13.5858,13.4142 L11,16" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg> Invite bot</a></li>' +
+              '<li><a href="https://discord.com/oauth2/authorize?client_id=1267307127609884793" target="_blank" rel="noopener"><svg class="nav-icon" width="19" height="19" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8,4 L18,4 C19.1046,4 20,4.89543 20,6 L20,18 C20,19.1046 19.1046,20 18,20 L8,20" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/><line x1="4" y1="12" x2="14" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M11,8 L13.5858,10.5858 C14.3668,11.3668 14.3668,12.6332 13.5858,13.4142 L11,16" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg> Invite bot</a></li>' +
               '<li><a href="https://discord.gg/kUARCbYxR4" target="_blank" rel="noopener"><svg class="nav-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18.8943 4.34399C17.5183 3.71467 16.057 3.256 14.5317 3C14.3396 3.33067 14.1263 3.77866 13.977 4.13067C12.3546 3.89599 10.7439 3.89599 9.14391 4.13067C8.99457 3.77866 8.77056 3.33067 8.58922 3C7.05325 3.256 5.59191 3.71467 4.22552 4.34399C1.46286 8.41865 0.716188 12.3973 1.08952 16.3226C2.92418 17.6559 4.69486 18.4666 6.4346 19C6.86126 18.424 7.24527 17.8053 7.57594 17.1546C6.9466 16.92 6.34927 16.632 5.77327 16.2906C5.9226 16.184 6.07194 16.0667 6.21061 15.9493C9.68793 17.5387 13.4543 17.5387 16.889 15.9493C17.0383 16.0667 17.177 16.184 17.3263 16.2906C16.7503 16.632 16.153 16.92 15.5236 17.1546C15.8543 17.8053 16.2383 18.424 16.665 19C18.4036 18.4666 20.185 17.6559 22.01 16.3226C22.4687 11.7787 21.2836 7.83202 18.8943 4.34399ZM8.05593 13.9013C7.01058 13.9013 6.15725 12.952 6.15725 11.7893C6.15725 10.6267 6.98925 9.67731 8.05593 9.67731C9.11191 9.67731 9.97588 10.6267 9.95454 11.7893C9.95454 12.952 9.11191 13.9013 8.05593 13.9013ZM15.065 13.9013C14.0196 13.9013 13.1652 12.952 13.1652 11.7893C13.1652 10.6267 13.9983 9.67731 15.065 9.67731C16.121 9.67731 16.985 10.6267 16.9636 11.7893C16.9636 12.952 16.1317 13.9013 15.065 13.9013Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" fill="none"/></svg> Discord</a></li>' +
             '</ul>' +
           '</nav>' +
@@ -161,6 +166,23 @@
     }
   }
 
+  function initMobileMenu() {
+    var toggle = document.querySelector('.mobile-menu-toggle');
+    var nav = document.querySelector('.top-bar__nav');
+    var container = document.querySelector('.container');
+    if (!toggle || !nav) return;
+    toggle.addEventListener('click', function() {
+      var isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', !isExpanded);
+      nav.classList.toggle('mobile-menu-open');
+      toggle.classList.toggle('mobile-menu-active');
+      document.body.classList.toggle('menu-open');
+      if (container) {
+        container.classList.toggle('menu-blur');
+      }
+    });
+  }
+
   function init() {
     var main = document.getElementById('main-content');
     if (!main) return;
@@ -169,6 +191,7 @@
     initGlows();
     setBotAvatar();
     loadTypingScript();
+    initMobileMenu();
   }
 
   if (document.readyState === 'loading') {
