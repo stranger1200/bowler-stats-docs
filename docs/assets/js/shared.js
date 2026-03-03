@@ -19,7 +19,7 @@
       '<div class="top-bar">' +
         '<div class="top-bar__inner">' +
           '<header class="top-bar__header site-header">' +
-            '<a href="index.html" class="header-title-row">' +
+            '<a href="./" class="header-title-row">' +
               '<img id="bot-avatar" src="" alt="" width="40" height="40">' +
               '<h1>Bowler Stats</h1>' +
             '</a>' +
@@ -31,7 +31,7 @@
           '</button>' +
           '<nav class="top-bar__nav site-nav" aria-label="Site">' +
             '<ul>' +
-              '<li><a href="index.html"><svg class="nav-icon" width="18" height="18" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1L2 6v8h4v-5h4v5h4V6L8 1z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg> Home</a></li>' +
+              '<li><a href="./"><svg class="nav-icon" width="18" height="18" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1L2 6v8h4v-5h4v5h4V6L8 1z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg> Home</a></li>' +
               '<li><a href="features.html"><svg class="nav-icon" width="18" height="18" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1l2 5h5l-4 3 1.5 5-4.5-3-4.5 3L6 9l-4-3h5l2-5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg> Features</a></li>' +
               '<li><a href="commands.html"><svg class="nav-icon" width="18" height="18" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="3" width="12" height="10" rx="1" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M5 7h6M5 10h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> Commands</a></li>' +
               '<li><a href="https://discord.com/oauth2/authorize?client_id=1267307127609884793" target="_blank" rel="noopener"><svg class="nav-icon" width="19" height="19" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8,4 L18,4 C19.1046,4 20,4.89543 20,6 L20,18 C20,19.1046 19.1046,20 18,20 L8,20" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/><line x1="4" y1="12" x2="14" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M11,8 L13.5858,10.5858 C14.3668,11.3668 14.3668,12.6332 13.5858,13.4142 L11,16" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg> Invite bot</a></li>' +
