@@ -183,15 +183,28 @@
     });
   }
 
+  function loadCommandsScripts() {
+    var s1 = document.createElement('script');
+    s1.src = 'assets/js/commands-data.js';
+    document.body.appendChild(s1);
+    s1.onload = function () {
+      var s2 = document.createElement('script');
+      s2.src = 'assets/js/commands.js';
+      document.body.appendChild(s2);
+    };
+  }
+
   function init() {
     var main = document.getElementById('main-content');
     if (!main) return;
+    var isCommandsPage = !!main.querySelector('#commands-container');
     var mainHTML = main.innerHTML;
     document.body.innerHTML = getLayoutHTML(mainHTML);
     initGlows();
     setBotAvatar();
     loadTypingScript();
     initMobileMenu();
+    if (isCommandsPage) loadCommandsScripts();
   }
 
   if (document.readyState === 'loading') {
