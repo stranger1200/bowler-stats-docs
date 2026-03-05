@@ -42,7 +42,8 @@ body {
   position: relative;
   overflow-x: hidden;
 }
-/* Background: four fixed quadrants that randomly fade to purple (opacity only, no movement). */
+/* Background: orbs that randomly fade in/out and drift slowly around the page.
+   Positions and drift are set by JS; CSS only handles the visual and transitions. */
 .bg-canvas {
   position: fixed;
   inset: 0;
@@ -52,16 +53,18 @@ body {
 }
 .bg-canvas .bg-glow {
   position: absolute;
-  background: radial-gradient(ellipse 80% 80% at center, var(--orb-color) 0%, var(--orb-color-soft) 40%, transparent 70%);
-  filter: blur(40px);
-  transition: opacity 2.2s ease-in-out, width 1.8s ease-in-out, height 1.8s ease-in-out;
+  width: 60vmin;
+  height: 60vmin;
+  border-radius: 50%;
+  background: radial-gradient(circle at center,
+    var(--orb-color) 0%,
+    var(--orb-color-soft) 35%,
+    transparent 65%
+  );
+  transition: opacity 2.2s ease-in-out, transform 9s ease-in-out;
   opacity: 0;
-  /* width/height set in JS so they vary randomly */
+  will-change: opacity, transform;
 }
-.bg-canvas .bg-glow--tl { top: 0; left: 0; }
-.bg-canvas .bg-glow--tr { top: 0; right: 0; }
-.bg-canvas .bg-glow--bl { bottom: 0; left: 0; }
-.bg-canvas .bg-glow--br { bottom: 0; right: 0; }
 .container {
   flex: 1;
   width: 100%;

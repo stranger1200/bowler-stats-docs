@@ -11,10 +11,12 @@
   function getLayoutHTML(mainContent) {
     return (
       '<div class="bg-canvas" aria-hidden="true">' +
-        '<div class="bg-glow bg-glow--tl"></div>' +
-        '<div class="bg-glow bg-glow--tr"></div>' +
-        '<div class="bg-glow bg-glow--bl"></div>' +
-        '<div class="bg-glow bg-glow--br"></div>' +
+        '<div class="bg-glow"></div>' +
+        '<div class="bg-glow"></div>' +
+        '<div class="bg-glow"></div>' +
+        '<div class="bg-glow"></div>' +
+        '<div class="bg-glow"></div>' +
+        '<div class="bg-glow"></div>' +
       '</div>' +
       '<div class="top-bar">' +
         '<div class="top-bar__inner">' +
@@ -50,18 +52,17 @@
     );
   }
 
-  var GLOW_FADE_IN_MS = 2200;
   var GLOW_FADE_OUT_MS = 2500;
   var GLOW_OPACITY_MIN = 0.35;
   var GLOW_OPACITY_MAX = 0.62;
+  var GLOW_SCALE_MIN = 0.8;
+  var GLOW_SCALE_MAX = 1.2;
   var GLOW_VISIBLE_MS_MIN = 4000;
   var GLOW_VISIBLE_MS_MAX = 11000;
   var GLOW_HIDDEN_MS_MIN = 2000;
   var GLOW_HIDDEN_MS_MAX = 7000;
   var GLOW_FIRST_DELAY_MS_MIN = 0;
   var GLOW_FIRST_DELAY_MS_MAX = 9000;
-  var GLOW_SIZE_MIN_PCT = 42;
-  var GLOW_SIZE_MAX_PCT = 74;
 
   function randomBetween(min, max) {
     return min + Math.random() * (max - min);
@@ -69,6 +70,43 @@
 
   function getGlows() {
     return document.querySelectorAll('.bg-canvas .bg-glow');
+  }
+
+  /* Returns the orb's radius in px (half of 60vmin). */
+  function orbRadius() {
+    return Math.min(window.innerWidth, window.innerHeight) * 0.30;
+  }
+
+  /* Picks a random centre position that isn't too close to other orbs. */
+  function pickPosition(excludeGlow) {
+    var vw = window.innerWidth;
+    var vh = window.innerHeight;
+    var minDist = orbRadius() * 1.8;
+    var glows = getGlows();
+    var existing = [];
+    for (var i = 0; i < glows.length; i++) {
+      if (glows[i] !== excludeGlow && glows[i]._pos) existing.push(glows[i]._pos);
+    }
+    for (var attempt = 0; attempt < 30; attempt++) {
+      var cx = randomBetween(0, vw);
+      var cy = randomBetween(0, vh);
+      var ok = true;
+      for (var j = 0; j < existing.length; j++) {
+        var dx = cx - existing[j].x;
+        var dy = cy - existing[j].y;
+        if (Math.sqrt(dx * dx + dy * dy) < minDist) { ok = false; break; }
+      }
+      if (ok) return { x: cx, y: cy };
+    }
+    return { x: randomBetween(0, vw), y: randomBetween(0, vh) };
+  }
+
+  /* Positions an orb (centre at pos) without any transition. */
+  function placeGlow(glow, pos) {
+    var r = orbRadius();
+    glow.style.left = (pos.x - r) + 'px';
+    glow.style.top  = (pos.y - r) + 'px';
+    glow._pos = pos;
   }
 
   function countVisibleGlows(excludeGlow) {
@@ -81,12 +119,6 @@
     return n;
   }
 
-  function setGlowRandomSize(glow) {
-    var pct = Math.round(randomBetween(GLOW_SIZE_MIN_PCT, GLOW_SIZE_MAX_PCT));
-    glow.style.width = pct + '%';
-    glow.style.height = pct + '%';
-  }
-
   function scheduleGlowFadeIn(glow, immediate) {
     var isFirst = !glow._glowScheduled;
     glow._glowScheduled = true;
@@ -95,11 +127,36 @@
       : randomBetween(GLOW_HIDDEN_MS_MIN, GLOW_HIDDEN_MS_MAX));
     setTimeout(function () {
       if (!glow.parentNode) return;
-      setGlowRandomSize(glow);
-      glow.style.opacity = String(randomBetween(GLOW_OPACITY_MIN, GLOW_OPACITY_MAX));
-      setTimeout(function () {
-        scheduleGlowFadeOut(glow);
-      }, randomBetween(GLOW_VISIBLE_MS_MIN, GLOW_VISIBLE_MS_MAX));
+      /* Reposition and resize while invisible so there's no visible jump.
+         Double RAF ensures the browser has painted the no-transition state
+         before we re-enable transitions and fade in. */
+      var pos = pickPosition(glow);
+      var scale = randomBetween(GLOW_SCALE_MIN, GLOW_SCALE_MAX);
+      glow._scale = scale;
+      glow.style.transition = 'none';
+      glow.style.transform = 'translate(0, 0) scale(' + scale + ')';
+      placeGlow(glow, pos);
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          if (!glow.parentNode) return;
+          glow.style.transition = '';
+          /* Fade in. */
+          glow.style.opacity = String(randomBetween(GLOW_OPACITY_MIN, GLOW_OPACITY_MAX));
+          /* Subtle drift while visible — starts partway through the visible period. */
+          var visibleDuration = randomBetween(GLOW_VISIBLE_MS_MIN, GLOW_VISIBLE_MS_MAX);
+          setTimeout(function () {
+            if (parseFloat(glow.style.opacity) > 0) {
+              var drift = orbRadius() * 0.3;
+              glow.style.transform = 'translate(' +
+                randomBetween(-drift, drift) + 'px, ' +
+                randomBetween(-drift, drift) + 'px) scale(' + glow._scale + ')';
+            }
+          }, visibleDuration * 0.25);
+          setTimeout(function () {
+            scheduleGlowFadeOut(glow);
+          }, visibleDuration);
+        });
+      });
     }, delay);
   }
 
@@ -127,8 +184,11 @@
   function initGlows() {
     var glows = getGlows();
     for (var i = 0; i < glows.length; i++) {
+      var initScale = randomBetween(GLOW_SCALE_MIN, GLOW_SCALE_MAX);
+      glows[i]._scale = initScale;
       glows[i].style.opacity = '0';
-      setGlowRandomSize(glows[i]);
+      glows[i].style.transform = 'translate(0, 0) scale(' + initScale + ')';
+      placeGlow(glows[i], pickPosition(glows[i]));
     }
     var firstIdx = Math.floor(Math.random() * glows.length);
     scheduleGlowFadeIn(glows[firstIdx], true);
