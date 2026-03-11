@@ -247,15 +247,18 @@ body.theme-switching * {
 /* Hero and CTA (home page) */
 .hero {
   text-align: center;
-  /* Fill the visible viewport below the sticky nav so the title and buttons
-     are centred on screen and the sections below start off-screen. */
-  min-height: calc(100svh - 80px);
+  /* svh comes last so it overrides vh on browsers that support both.
+     svh excludes mobile browser chrome, preventing the hero from being
+     taller than the visible screen and pushing content too far down. */
   min-height: calc(100vh - 80px);
+  min-height: calc(100svh - 80px);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding: 14rem 0 0;
+  /* clamp keeps the top padding proportional to viewport height so the
+     title stays in the upper-middle on short screens (e.g. 492×750). */
+  padding: clamp(4rem, 18svh, 14rem) 0 0;
   margin-bottom: 2rem;
 }
 .hero h1 {
