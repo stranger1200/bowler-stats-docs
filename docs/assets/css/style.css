@@ -5,12 +5,10 @@
   --text: #e4e4e7;
   --text-muted: #a1a1aa;
   --text-body: #c5c5cc;
-  --accent: #7A6FFC;
-  --accent-hover: #9489fd;
+  --accent: #6D28D9;
+  --accent-hover: #7C3AED;
   --link-glow: 0 0 8px rgba(65, 55, 195, 0.7), 0 0 14px rgba(65, 55, 195, 0.45);
   --link-glow-hover: 0 0 10px rgba(75, 65, 210, 0.75), 0 0 18px rgba(65, 55, 195, 0.5);
-  --orb-color: rgba(167, 139, 250, 0.5);
-  --orb-color-soft: rgba(196, 181, 253, 0.25);
 }
 [data-theme="light"] {
   --bg: #dddad6;
@@ -19,12 +17,10 @@
   --text: #1c1b19;
   --text-muted: #5c5a57;
    --text-body: #3a3835;
-  --accent: #7A6FFC;
-  --accent-hover: #695ee0;
+  --accent: #5B21B6;
+  --accent-hover: #6D28D9;
   --link-glow: 0 0 6px rgba(0, 0, 0, 0.2), 0 0 12px rgba(0, 0, 0, 0.15);
   --link-glow-hover: 0 0 8px rgba(0, 0, 0, 0.28), 0 0 16px rgba(0, 0, 0, 0.2);
-  --orb-color: rgba(124, 58, 237, 0.4);
-  --orb-color-soft: rgba(167, 139, 250, 0.2);
 }
 * {
   box-sizing: border-box;
@@ -42,28 +38,36 @@ body {
   position: relative;
   overflow-x: hidden;
 }
-/* Background: orbs that randomly fade in/out and drift slowly around the page.
-   Positions and drift are set by JS; CSS only handles the visual and transitions. */
+/* Background: three gradient layers that morph in shape and size, creating an
+   organic purple hue. Shape-shifting is done via border-radius + asymmetric
+   scale rather than translation, so it feels like the form is changing, not
+   just sliding around. Pure CSS — no JS needed. */
+/* Background: oversized diagonal gradient that animates its position,
+   creating a continuously shifting, non-uniform purple wash over a dark base.
+   Near-black stops in the gradient let the background breathe and prevent
+   the effect from looking like a solid fill. */
+/* Background canvas — shift animation renders into a canvas appended here
+   by bg-shift.js. The canvas positions itself fixed via inline styles. */
 .bg-canvas {
   position: fixed;
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  overflow: hidden;
 }
-.bg-canvas .bg-glow {
-  position: absolute;
-  width: 60vmin;
-  height: 60vmin;
-  border-radius: 50%;
-  background: radial-gradient(circle at center,
-    var(--orb-color) 0%,
-    var(--orb-color-soft) 35%,
-    transparent 65%
-  );
-  transition: opacity 2.2s ease-in-out, transform 9s ease-in-out;
-  opacity: 0;
-  will-change: opacity, transform;
+[data-theme="light"] .bg-canvas {
+  opacity: 0.35;
+}
+/* Full-screen frosted glass overlay — sits above the animated background
+   but below all content, softening the background across the whole page. */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  background: rgba(0, 0, 0, 0.4);
 }
 .container {
   flex: 1;
@@ -73,7 +77,7 @@ body {
   padding: 2rem 1.5rem 4rem;
   box-sizing: border-box;
   position: relative;
-  z-index: 1;
+  z-index: 2;
   min-height: 100vh;
 }
 /* Top bar: force full viewport width (full-bleed), sticky so it stays in view when scrolling */
@@ -243,17 +247,27 @@ body.theme-switching * {
 /* Hero and CTA (home page) */
 .hero {
   text-align: center;
-  padding: 3rem 0 4rem;
-  margin-bottom: 0.5rem;
+  /* Fill the visible viewport below the sticky nav so the title and buttons
+     are centred on screen and the sections below start off-screen. */
+  min-height: calc(100svh - 80px);
+  min-height: calc(100vh - 80px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 14rem 0 0;
+  margin-bottom: 2rem;
 }
 .hero h1 {
-  font-size: 2.25rem;
-  font-weight: 700;
-  margin: 0 0 0.75rem;
+  font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+  font-weight: 800;
+  margin: 0 0 1.25rem;
   letter-spacing: -0.02em;
   color: var(--text);
-  line-height: 1.2;
-  min-height: 5.4rem;
+  line-height: 1.25;
+  /* Reserves space for two lines so the layout doesn't jump as
+     short and long typing titles swap in and out. */
+  min-height: 6.5rem;
 }
 #typing-title {
   display: block;
@@ -262,18 +276,19 @@ body.theme-switching * {
   content: '|';
   color: var(--accent);
   animation: blink 1s step-end infinite;
-  margin-left: 2px;
+  margin-left: 3px;
 }
 @keyframes blink {
   0%, 50% { opacity: 1; }
   51%, 100% { opacity: 0; }
 }
 .hero .tagline {
-  font-size: 1.125rem;
+  font-size: clamp(1rem, 2vw, 1.25rem);
   color: var(--text-muted);
-  margin: 0 auto 2rem;
-  max-width: 36em;
-  line-height: 1.6;
+  margin: 0 auto 2.5rem;
+  max-width: 32em;
+  line-height: 1.65;
+  opacity: 0.85;
 }
 .cta-buttons {
   display: flex;
@@ -282,39 +297,54 @@ body.theme-switching * {
   justify-content: center;
   margin-top: 0;
 }
-.cta-button {
+/* Skewed button */
+.cta-skew {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 0.875rem 1.75rem;
-  background: var(--accent);
-  color: #fff;
+  padding: 11px 33px;
   text-decoration: none;
-  font-weight: 600;
   font-size: 1rem;
-  border-radius: 8px;
+  font-weight: 600;
+  color: white;
+  background: #6D28D9;
+  transition: box-shadow 0.35s;
+  box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.85);
+  transform: skewX(-15deg);
   border: none;
   cursor: pointer;
-  transition: background 0.2s, color 0.2s, box-shadow 0.25s, transform 0.25s;
+  outline: none;
 }
-.cta-button:hover {
-  background: var(--accent-hover);
-  color: #fff;
-  text-decoration: none;
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
-  transform: translateY(-1px) scale(1.05);
+.cta-skew:hover {
+  transition: box-shadow 0.3s;
+  box-shadow: 10px 10px 0 #7a2870;
 }
-.cta-button.secondary {
-  background: var(--surface);
-  color: var(--text);
-  border: 1px solid var(--border);
+.cta-skew__label,
+.cta-skew__arrow {
+  transform: skewX(15deg);
+  display: inline-flex;
+  align-items: center;
 }
-.cta-button.secondary:hover {
-  background: var(--border);
-  color: var(--text);
-  text-decoration: none;
+.cta-skew__arrow {
+  margin-left: 14px;
+  width: 20px;
+  height: 20px;
+  overflow: hidden;
 }
+.cta-skew__arrow .sk-one {
+  transition: 0.4s;
+  transform: translateX(-55%);
+  transform-origin: center;
+}
+.cta-skew__arrow .sk-two {
+  transition: 0.5s;
+  transform: translateX(-25%);
+  transform-origin: center;
+}
+.cta-skew:hover .sk-one,
+.cta-skew:hover .sk-two {
+  transform: translateX(0);
+}
+
 .effective {
   font-size: 0.875rem;
   color: var(--text-muted);
