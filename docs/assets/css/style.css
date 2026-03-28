@@ -1,14 +1,19 @@
 :root {
-  --bg: #0f0f12;
+  --bg: #121214;
   --surface: #18181c;
   --border: #2a2a2e;
   --text: #e4e4e7;
   --text-muted: #a1a1aa;
   --text-body: #c5c5cc;
-  --accent: #6D28D9;
-  --accent-hover: #7C3AED;
+  --accent: #6d28d9;
+  --accent-hover: #7c3aed;
   --link-glow: 0 0 8px rgba(65, 55, 195, 0.7), 0 0 14px rgba(65, 55, 195, 0.45);
   --link-glow-hover: 0 0 10px rgba(75, 65, 210, 0.75), 0 0 18px rgba(65, 55, 195, 0.5);
+}
+@property --border-rotate {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
 }
 [data-theme="light"] {
   --bg: #dddad6;
@@ -17,8 +22,8 @@
   --text: #1c1b19;
   --text-muted: #5c5a57;
    --text-body: #3a3835;
-  --accent: #5B21B6;
-  --accent-hover: #6D28D9;
+  --accent: #5b21b6;
+  --accent-hover: #6d28d9;
   --link-glow: 0 0 6px rgba(0, 0, 0, 0.2), 0 0 12px rgba(0, 0, 0, 0.15);
   --link-glow-hover: 0 0 8px rgba(0, 0, 0, 0.28), 0 0 16px rgba(0, 0, 0, 0.2);
 }
@@ -36,39 +41,9 @@ body {
   color: var(--text);
   background: var(--bg);
   position: relative;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
-/* Background: three gradient layers that morph in shape and size, creating an
-   organic purple hue. Shape-shifting is done via border-radius + asymmetric
-   scale rather than translation, so it feels like the form is changing, not
-   just sliding around. Pure CSS — no JS needed. */
-/* Background: oversized diagonal gradient that animates its position,
-   creating a continuously shifting, non-uniform purple wash over a dark base.
-   Near-black stops in the gradient let the background breathe and prevent
-   the effect from looking like a solid fill. */
-/* Background canvas — shift animation renders into a canvas appended here
-   by bg-shift.js. The canvas positions itself fixed via inline styles. */
-.bg-canvas {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-}
-[data-theme="light"] .bg-canvas {
-  opacity: 0.35;
-}
-/* Full-screen frosted glass overlay — sits above the animated background
-   but below all content, softening the background across the whole page. */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  background: rgba(0, 0, 0, 0.4);
-}
+/* Plain background colour on body — no canvas or frosted overlay */
 .container {
   flex: 1;
   width: 100%;
@@ -77,7 +52,7 @@ body::before {
   padding: 2rem 1.5rem 4rem;
   box-sizing: border-box;
   position: relative;
-  z-index: 2;
+  z-index: 1;
   min-height: 100vh;
 }
 /* Top bar: force full viewport width (full-bleed), sticky so it stays in view when scrolling */
@@ -93,7 +68,14 @@ body::before {
   z-index: 200;
   flex-shrink: 0;
   background: transparent;
-  backdrop-filter: blur(8px);
+  transition: background 0.22s ease, box-shadow 0.22s ease;
+}
+/* Frosted bar appears only after the user scrolls (see shared.js) */
+.top-bar.top-bar--scrolled {
+  background: color-mix(in srgb, var(--bg) 72%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 1px 0 color-mix(in srgb, var(--border) 55%, transparent);
 }
 .top-bar__inner {
   width: 100%;
@@ -247,6 +229,7 @@ body.theme-switching * {
 /* Hero and CTA (home page) */
 .hero {
   text-align: center;
+  position: relative;
   /* svh comes last so it overrides vh on browsers that support both.
      svh excludes mobile browser chrome, preventing the hero from being
      taller than the visible screen and pushing content too far down. */
@@ -268,9 +251,10 @@ body.theme-switching * {
   letter-spacing: -0.02em;
   color: var(--text);
   line-height: 1.25;
+  white-space: pre-line;
   /* Reserves space for two lines so the layout doesn't jump as
      short and long typing titles swap in and out. */
-  min-height: 6.5rem;
+  min-height: 7.5rem;
 }
 #typing-title {
   display: block;
@@ -293,6 +277,128 @@ body.theme-switching * {
   line-height: 1.65;
   opacity: 0.85;
 }
+
+/* ── Decorative card clusters ── */
+.hero-cards {
+  position: absolute;
+  top: 44%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  /* negative gap creates the vertical overlap between cards */
+  gap: -1px;
+  pointer-events: none;
+  perspective: 600px;
+}
+.hero-cards--left  { left:  -105px; }
+.hero-cards--right { right: -105px; }
+
+.hero-card {
+  position: relative;
+  width: 144px;
+  display: block;
+  z-index: var(--cf-z, 1);
+  /* push cards up so each one partially overlaps the one below */
+  margin-bottom: -38px;
+  animation: card-float var(--cf-dur, 5s) ease-in-out infinite alternate;
+  animation-delay: var(--cf-delay, 0s);
+  filter:
+    drop-shadow(0 14px 28px rgba(0, 0, 0, 0.65))
+    drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
+}
+/* Last card in each cluster gets no bottom overlap pull */
+.hero-card:last-child { margin-bottom: 0; }
+
+/* Colour glow behind each card, tinted per card rarity */
+.hero-card::before {
+  content: '';
+  position: absolute;
+  inset: -18px;
+  border-radius: 20px;
+  background: radial-gradient(ellipse at 50% 60%, var(--cf-glow, rgba(124,58,237,0.55)) 0%, transparent 68%);
+  filter: blur(16px);
+  z-index: -1;
+  opacity: 0.85;
+}
+
+.hero-card img {
+  width: 100%;
+  display: block;
+}
+
+/* Per-rarity card borders — 8-directional drop-shadow traces non-transparent pixels */
+.hero-card--gold img {
+  filter:
+    drop-shadow( 0    1px  0 rgba(210, 175, 60, 0.9))
+    drop-shadow( 0   -1px  0 rgba(210, 175, 60, 0.9))
+    drop-shadow( 1px  0    0 rgba(210, 175, 60, 0.9))
+    drop-shadow(-1px  0    0 rgba(210, 175, 60, 0.9))
+    drop-shadow( 1px  1px  0 rgba(210, 175, 60, 0.9))
+    drop-shadow(-1px  1px  0 rgba(210, 175, 60, 0.9))
+    drop-shadow( 1px -1px  0 rgba(210, 175, 60, 0.9))
+    drop-shadow(-1px -1px  0 rgba(210, 175, 60, 0.9));
+}
+.hero-card--epic img {
+  filter:
+    drop-shadow( 0    1px  0 #fc98fc)
+    drop-shadow( 0   -1px  0 #fc98fc)
+    drop-shadow( 1px  0    0 #fc98fc)
+    drop-shadow(-1px  0    0 #fc98fc)
+    drop-shadow( 1px  1px  0 #fc98fc)
+    drop-shadow(-1px  1px  0 #fc98fc)
+    drop-shadow( 1px -1px  0 #fc98fc)
+    drop-shadow(-1px -1px  0 #fc98fc);
+}
+.hero-card--rare img {
+  filter:
+    drop-shadow( 0    1px  0 #fad562)
+    drop-shadow( 0   -1px  0 #fad562)
+    drop-shadow( 1px  0    0 #fad562)
+    drop-shadow(-1px  0    0 #fad562)
+    drop-shadow( 1px  1px  0 #fad562)
+    drop-shadow(-1px  1px  0 #fad562)
+    drop-shadow( 1px -1px  0 #fad562)
+    drop-shadow(-1px -1px  0 #fad562);
+}
+/* The Log — all three colours distributed clockwise around the full perimeter:
+   top = green, top-right/right = yellow, bottom = pink, bottom-left/left = green */
+.hero-card--log img {
+  filter:
+    drop-shadow( 0   -1px  0 #aee573)
+    drop-shadow( 1px -1px  0 #dceb64)
+    drop-shadow( 1px  0    0 #f3a9f6)
+    drop-shadow( 1px  1px  0 #f3a9f6)
+    drop-shadow( 0    1px  0 #dceb64)
+    drop-shadow(-1px  1px  0 #aee573)
+    drop-shadow(-1px  0    0 #aee573)
+    drop-shadow(-1px -1px  0 #dceb64);
+}
+
+@keyframes card-float {
+  from {
+    transform:
+      translateX(var(--cf-tx, 0px))
+      rotate(var(--cf-rot, 0deg))
+      translateY(0px)
+      perspective(500px)
+      rotateX(6deg)
+      rotateY(var(--cf-ry-from, -4deg));
+  }
+  to {
+    transform:
+      translateX(var(--cf-tx, 0px))
+      rotate(var(--cf-rot, 0deg))
+      translateY(-18px)
+      perspective(500px)
+      rotateX(-3deg)
+      rotateY(var(--cf-ry-to, 4deg));
+  }
+}
+
+/* Hide cards when viewport is too narrow for them to fit comfortably */
+@media (max-width: 1080px) {
+  .hero-cards { display: none; }
+}
 .cta-buttons {
   display: flex;
   flex-wrap: wrap;
@@ -300,8 +406,9 @@ body.theme-switching * {
   justify-content: center;
   margin-top: 0;
 }
-/* Skewed button */
+/* Skewed CTA — rotating conic border on hover (no stroke-dash seam; fixed arc length) */
 .cta-skew {
+  position: relative;
   display: inline-flex;
   align-items: center;
   padding: 11px 33px;
@@ -309,21 +416,67 @@ body.theme-switching * {
   font-size: 1rem;
   font-weight: 600;
   color: white;
-  background: #6D28D9;
-  transition: box-shadow 0.35s;
-  box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.85);
-  transform: skewX(-15deg);
+  background: var(--accent);
+  transition: transform 0.3s ease, background 0.3s ease;
+  transform: skewX(-15deg) translateY(-3px);
+  box-shadow: none;
   border: none;
   cursor: pointer;
   outline: none;
+  overflow: visible;
+  isolation: isolate;
+}
+.cta-skew::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  z-index: 1;
+  pointer-events: none;
+  box-sizing: border-box;
+  padding: 2px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  background: conic-gradient(
+    from var(--border-rotate),
+    rgba(255, 255, 255, 0.96) 0deg,
+    rgba(255, 255, 255, 0.96) 72deg,
+    transparent 72deg,
+    transparent 360deg
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+}
+.cta-skew:hover::before,
+.cta-skew:focus-visible::before {
+  opacity: 1;
+  animation: cta-skew-border-spin 2s linear infinite;
+}
+@keyframes cta-skew-border-spin {
+  from {
+    --border-rotate: 0deg;
+  }
+  to {
+    --border-rotate: 360deg;
+  }
 }
 .cta-skew:hover {
-  transition: box-shadow 0.3s;
-  box-shadow: 10px 10px 0 #7a2870;
+  background: var(--accent-hover);
+  transform: skewX(-15deg) translateY(-5px);
+}
+.cta-skew:focus-visible {
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 50%, transparent);
+}
+.cta-skew__inner {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  transform: skewX(15deg);
 }
 .cta-skew__label,
 .cta-skew__arrow {
-  transform: skewX(15deg);
   display: inline-flex;
   align-items: center;
 }

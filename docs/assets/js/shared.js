@@ -1,5 +1,5 @@
 /**
- * Shared layout for Bowler Stats site: theme, background orbs, header, footer.
+ * Shared layout for Bowler Stats site: theme, header, footer.
  * Each page only needs <div id="main-content">...</div>; this script injects the rest.
  */
 (function () {
@@ -10,7 +10,6 @@
 
   function getLayoutHTML(mainContent) {
     return (
-      '<div class="bg-canvas" aria-hidden="true"></div>' +
       '<div class="top-bar">' +
         '<div class="top-bar__inner">' +
           '<header class="top-bar__header site-header">' +
@@ -73,6 +72,18 @@
     }
   }
 
+  function initTopBarScrollBlur() {
+    var bar = document.querySelector('.top-bar');
+    if (!bar) return;
+    var threshold = 16;
+    function update() {
+      var y = window.scrollY || document.documentElement.scrollTop;
+      bar.classList.toggle('top-bar--scrolled', y > threshold);
+    }
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+  }
+
   function initMobileMenu() {
     var toggle = document.querySelector('.mobile-menu-toggle');
     var nav = document.querySelector('.top-bar__nav');
@@ -101,12 +112,6 @@
     };
   }
 
-  function loadBgShift() {
-    var s = document.createElement('script');
-    s.src = 'assets/js/bg-shift.js';
-    document.body.appendChild(s);
-  }
-
   function init() {
     var main = document.getElementById('main-content');
     if (!main) return;
@@ -116,7 +121,7 @@
     setBotAvatar();
     loadTypingScript();
     initMobileMenu();
-    loadBgShift();
+    initTopBarScrollBlur();
     if (isCommandsPage) loadCommandsScripts();
   }
 

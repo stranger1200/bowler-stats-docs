@@ -24,17 +24,52 @@
 <body>
   <div id="main-content">
     <section class="hero">
+
+      <!-- Left card cluster: Archer Queen, The Log, Knight Hero, PEKKA Evolved -->
+      <div class="hero-cards hero-cards--left" aria-hidden="true">
+        <div class="hero-card hero-card--gold" style="--cf-z:4; --cf-tx:22px;  --cf-rot:-6deg; --cf-dur:5.5s; --cf-delay:0s;    --cf-glow:rgba(255,200,50,0.6);   --cf-ry-from:-6deg; --cf-ry-to:3deg;">
+          <img src="assets/images/card-archer-queen.png" alt="">
+        </div>
+        <div class="hero-card hero-card--log"  style="--cf-z:3; --cf-tx:-12px; --cf-rot:4deg;  --cf-dur:4.8s; --cf-delay:-2s;   --cf-glow:rgba(174,229,115,0.45); --cf-ry-from:-3deg; --cf-ry-to:5deg;">
+          <img src="assets/images/card-the-log.png" alt="">
+        </div>
+        <div class="hero-card hero-card--gold" style="--cf-z:2; --cf-tx:28px;  --cf-rot:-5deg; --cf-dur:6.2s; --cf-delay:-1s;   --cf-glow:rgba(255,185,0,0.55);   --cf-ry-from:-5deg; --cf-ry-to:2deg;">
+          <img src="assets/images/card-knight-hero.png" alt="">
+        </div>
+        <div class="hero-card hero-card--epic" style="--cf-z:1; --cf-tx:-8px;  --cf-rot:5deg;  --cf-dur:5s;   --cf-delay:-3.5s; --cf-glow:rgba(252,152,252,0.5);  --cf-ry-from:-4deg; --cf-ry-to:6deg;">
+          <img src="assets/images/card-pekka.png" alt="">
+        </div>
+      </div>
+
+      <!-- Right card cluster: Goblins Hero, Royal Hogs Evolved, Bowler, Three Musketeers -->
+      <div class="hero-cards hero-cards--right" aria-hidden="true">
+        <div class="hero-card hero-card--gold" style="--cf-z:4; --cf-tx:-22px; --cf-rot:7deg;  --cf-dur:6s;   --cf-delay:-0.6s; --cf-glow:rgba(255,190,0,0.55);   --cf-ry-from:5deg;  --cf-ry-to:-3deg;">
+          <img src="assets/images/card-goblins-hero.png" alt="">
+        </div>
+        <div class="hero-card hero-card--epic" style="--cf-z:3; --cf-tx:12px;  --cf-rot:-4deg; --cf-dur:5.2s; --cf-delay:-2.8s; --cf-glow:rgba(252,152,252,0.5);  --cf-ry-from:4deg;  --cf-ry-to:-5deg;">
+          <img src="assets/images/card-royal-hogs.png" alt="">
+        </div>
+        <div class="hero-card hero-card--epic" style="--cf-z:2; --cf-tx:-28px; --cf-rot:5deg;  --cf-dur:4.5s; --cf-delay:-1.5s; --cf-glow:rgba(252,152,252,0.45); --cf-ry-from:3deg;  --cf-ry-to:-4deg;">
+          <img src="assets/images/card-bowler.png" alt="">
+        </div>
+        <div class="hero-card hero-card--rare" style="--cf-z:1; --cf-tx:8px;   --cf-rot:-5deg; --cf-dur:5.8s; --cf-delay:-4s;   --cf-glow:rgba(250,213,98,0.5);   --cf-ry-from:6deg;  --cf-ry-to:-2deg;">
+          <img src="assets/images/card-three-musketeers.png" alt="">
+        </div>
+      </div>
+
       <h1 id="typing-title"></h1>
       <p class="tagline">View and share your profile and recent battles, right in Discord. Privacy-first and easy to use.</p>
       <div class="cta-buttons">
         <a href="https://discord.com/oauth2/authorize?client_id=1267307127609884793" class="cta-skew" target="_blank" rel="noopener">
-          <span class="cta-skew__label">Invite the bot</span>
-          <span class="cta-skew__arrow" aria-hidden="true">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-              <line class="sk-one" x1="1" y1="10" x2="10" y2="10" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
-              <line class="sk-two" x1="7" y1="10" x2="14" y2="10" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
-              <polyline class="sk-three" points="11,4 18,10 11,16" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
+          <span class="cta-skew__inner">
+            <span class="cta-skew__label">Invite the bot</span>
+            <span class="cta-skew__arrow" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <line class="sk-one" x1="1" y1="10" x2="10" y2="10" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                <line class="sk-two" x1="7" y1="10" x2="14" y2="10" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                <polyline class="sk-three" points="11,4 18,10 11,16" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
           </span>
         </a>
       </div>

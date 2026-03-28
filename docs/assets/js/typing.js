@@ -5,10 +5,10 @@
   var titles = [
     'Clash Royale stats. On Discord.',
     'Flex on your friends with Bowler Stats.',
-    'Get your stats anywhere, no matter the server.',
-    'Feature rich? Customisable? That\'s Bowler Stats.',
+    'Get your stats anywhere,\nno matter the server.',
+    'Feature rich? Customisable?\nThat\'s Bowler Stats.',
     'Privacy first? You\'re safe with Bowler Stats.',
-    'Got impressive stats? Show them with Bowler Stats.',
+    'Got impressive stats?\nShow them with Bowler Stats.',
   ];
 
   var titleEl = document.getElementById('typing-title');
