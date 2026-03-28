@@ -1,1 +1,3 @@
 slashCommands/
+node_modules/
+dist/
