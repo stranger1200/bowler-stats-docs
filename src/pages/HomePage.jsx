@@ -168,8 +168,7 @@ export function HomePage() {
       <section>
         <h2>About</h2>
         <p className="intro">
-          Bowler Stats is a fan-made Discord bot that lets you view and share your Clash Royale stats directly in your
-          server. Link your player tag once and use slash commands to pull up your profile, recent battles and more.
+        Bowler Stats is the best Discord bot for viewing and sharing your Clash Royale stats with friends! Show off your achievements, battle history, and progress in style.
         </p>
       </section>
 

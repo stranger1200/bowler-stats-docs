@@ -5,11 +5,18 @@
   --text: #e4e4e7;
   --text-muted: #a1a1aa;
   --text-body: #c5c5cc;
-  --accent: #9b7cf5;
-  --accent-hover: #8b5cf6;
-  --link-visited: #7c5cee;
-  --link-glow: 0 0 8px rgba(155, 124, 245, 0.45), 0 0 14px rgba(155, 124, 245, 0.3);
-  --link-glow-hover: 0 0 10px rgba(139, 92, 246, 0.55), 0 0 18px rgba(139, 92, 246, 0.35);
+  --accent: #936cf6;
+  --accent-hover: #b59ffc;
+  --cta-accent: #7048d4;
+  --cta-accent-hover: #9075eb;
+  --cta-skew-rim: rgba(255, 255, 255, 0.96);
+  --link-accent: #a889fa;
+  --link-accent-hover: #cab5ff;
+  --link-glow: 0 0 8px rgba(168, 137, 250, 0.45), 0 0 14px rgba(168, 137, 250, 0.28);
+  --link-glow-hover: 0 0 10px rgba(202, 181, 255, 0.55), 0 0 18px rgba(202, 181, 255, 0.35);
+  --nav-link: #d6d6de;
+  --nav-link-hover: #f0f0f3;
+  --nav-link-glow: var(--link-glow);
 }
 @property --border-rotate {
   syntax: "<angle>";
@@ -17,17 +24,23 @@
   initial-value: 0deg;
 }
 [data-theme="light"] {
-  --bg: #dddad6;
-  --surface: #e6e4e0;
-  --border: #c9c6c2;
+  --bg: #faf8f5;
+  --surface: #fffcf9;
+  --border: #e0ddd7;
   --text: #1c1b19;
   --text-muted: #5c5a57;
   --text-body: #3a3835;
-  --accent: #4f29b0;
-  --accent-hover: #7c5cf6;
-  --link-visited: #5e34bc;
+  --accent: #a855f7;
+  --accent-hover: #d8b4fe;
+  --cta-accent: #9e4afe;
+  --cta-accent-hover: #b465fe;
+  --link-accent: #a953e6;
+  --link-accent-hover: #8f67f8;
   --link-glow: 0 0 6px rgba(0, 0, 0, 0.2), 0 0 12px rgba(0, 0, 0, 0.15);
   --link-glow-hover: 0 0 8px rgba(0, 0, 0, 0.28), 0 0 16px rgba(0, 0, 0, 0.2);
+  --nav-link: var(--text-muted);
+  --nav-link-hover: var(--text);
+  --nav-link-glow: none;
 }
 * {
   box-sizing: border-box;
@@ -108,14 +121,14 @@ body {
 .hamburger-line {
   width: 22px;
   height: 2px;
-  background: var(--text-muted);
+  background: var(--nav-link);
   transition: all 0.3s ease;
   border-radius: 1px;
   transform-origin: center;
   position: relative;
 }
 .mobile-menu-toggle:hover .hamburger-line {
-  background: #fff;
+  background: var(--nav-link-hover);
 }
 .mobile-menu-toggle.mobile-menu-active .hamburger-line:nth-child(1) {
   transform: translateY(7px) rotate(45deg);
@@ -191,27 +204,27 @@ body.theme-switching * {
   padding: 0.4rem 0;
   font-size: 1rem;
   font-weight: 500;
-  color: var(--text-muted);
+  color: var(--nav-link);
   text-decoration: none;
 }
 .site-nav a .nav-icon {
   flex-shrink: 0;
-  opacity: 0.8;
-  transition: opacity 0.2s;
+  opacity: 0.88;
+  transition: opacity 0.2s, color 0.2s;
 }
 .site-nav a:hover {
-  color: #fff;
-  text-shadow: var(--link-glow);
+  color: var(--nav-link-hover);
+  text-shadow: var(--nav-link-glow);
 }
 .site-nav a:hover .nav-icon {
   opacity: 1;
 }
 .site-nav a:visited {
-  color: var(--text-muted);
+  color: var(--nav-link);
 }
 .site-nav a:visited:hover {
-  color: #fff;
-  text-shadow: var(--link-glow);
+  color: var(--nav-link-hover);
+  text-shadow: var(--nav-link-glow);
 }
 .site-nav a:visited:hover .nav-icon {
   opacity: 1;
@@ -362,6 +375,16 @@ body.theme-switching * {
     drop-shadow(-1px -1px  0 #dceb64);
 }
 
+[data-theme="light"] .hero-card {
+  filter:
+    drop-shadow(0 5px 12px rgba(0, 0, 0, 0.35))
+    drop-shadow(0 2px 4px rgba(0, 0, 0, 0.35));
+}
+
+[data-theme="light"] .hero-card::before {
+  opacity: 0.42;
+}
+
 @keyframes card-float {
   from {
     transform:
@@ -404,7 +427,7 @@ body.theme-switching * {
   font-size: 1rem;
   font-weight: 600;
   color: white;
-  background: var(--accent);
+  background: var(--cta-accent);
   transition: transform 0.3s ease;
   transform: skewX(-15deg) translateY(-3px);
   box-shadow: none;
@@ -419,7 +442,7 @@ body.theme-switching * {
   content: '';
   position: absolute;
   inset: 0;
-  background: var(--accent-hover);
+  background: var(--cta-accent-hover);
   opacity: 0;
   transition: opacity 0.5s ease;
   z-index: 0;
@@ -438,8 +461,8 @@ body.theme-switching * {
   transition: opacity 0.2s ease;
   background: conic-gradient(
     from var(--border-rotate),
-    rgba(255, 255, 255, 0.96) 0deg,
-    rgba(255, 255, 255, 0.96) 72deg,
+    var(--cta-skew-rim) 0deg,
+    var(--cta-skew-rim) 72deg,
     transparent 72deg,
     transparent 360deg
   );
@@ -468,7 +491,7 @@ body.theme-switching * {
   transform: skewX(-15deg) translateY(-5px);
 }
 .cta-skew:focus-visible {
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 50%, transparent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--cta-accent) 50%, transparent);
 }
 .cta-skew__inner {
   position: relative;
@@ -906,16 +929,16 @@ code {
   padding: 0;
   font: inherit;
   font-size: inherit;
-  color: var(--accent);
+  color: var(--link-accent);
   cursor: pointer;
   text-decoration: underline;
   text-underline-offset: 3px;
-  text-decoration-color: color-mix(in srgb, var(--accent) 40%, transparent);
+  text-decoration-color: color-mix(in srgb, var(--link-accent) 40%, transparent);
   transition: color 0.15s, text-decoration-color 0.15s;
 }
 .command-card__see-also-link:hover {
-  color: var(--accent-hover);
-  text-decoration-color: color-mix(in srgb, var(--accent-hover) 80%, transparent);
+  color: var(--link-accent-hover);
+  text-decoration-color: color-mix(in srgb, var(--link-accent-hover) 80%, transparent);
 }
 @media (prefers-reduced-motion: reduce) {
   .command-card__panel {
@@ -949,23 +972,15 @@ code {
   margin-top: 1.5rem;
 }
 .container a {
-  color: var(--accent);
+  color: var(--link-accent);
   text-decoration: underline;
   text-underline-offset: 3px;
-  text-decoration-color: color-mix(in srgb, var(--accent) 40%, transparent);
+  text-decoration-color: color-mix(in srgb, var(--link-accent) 40%, transparent);
   transition: color 0.15s, text-decoration-color 0.15s;
 }
 .container a:hover {
-  color: var(--accent-hover);
-  text-decoration-color: color-mix(in srgb, var(--accent-hover) 80%, transparent);
-}
-.container a:visited {
-  color: var(--link-visited);
-  text-decoration-color: color-mix(in srgb, var(--link-visited) 40%, transparent);
-}
-.container a:visited:hover {
-  color: var(--accent-hover);
-  text-decoration-color: color-mix(in srgb, var(--accent-hover) 80%, transparent);
+  color: var(--link-accent-hover);
+  text-decoration-color: color-mix(in srgb, var(--link-accent-hover) 80%, transparent);
 }
 .container a.cta-button,
 .container a.cta-skew {

@@ -5,13 +5,13 @@ export function TermsPage() {
   return (
     <>
       <PageTitle title="Bowler Stats - Terms of Service" />
-      <p className="effective">Effective Date: February 22, 2026</p>
+      <p className="effective">Effective Date: March 29, 2026</p>
 
       <section>
         <h1 className="page-title">Terms of Service</h1>
         <h2>1. Acceptance & Description of Service</h2>
         <p className="intro">
-          Bowler Stats is a fan-made Discord bot that lets you view and share Clash Royale stats. By inviting or using
+          Bowler Stats is a Discord bot that lets you view and share Clash Royale stats. By inviting or using
           the bot, you agree to these Terms of Service and to our <Link to="/privacy">Privacy Policy</Link>.
         </p>
         <div className="disclaimer">

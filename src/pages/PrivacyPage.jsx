@@ -4,7 +4,7 @@ export function PrivacyPage() {
   return (
     <>
       <PageTitle title="Bowler Stats - Privacy Policy" />
-      <p className="effective">Effective Date: February 22, 2026</p>
+      <p className="effective">Effective Date: March 29, 2026</p>
 
       <section>
         <h1 className="page-title">Privacy Policy</h1>
