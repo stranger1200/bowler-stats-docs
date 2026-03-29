@@ -11,10 +11,9 @@ export function FeaturesPage() {
         <article className="feature-card">
           <div className="feature-card__image-wrap" />
           <div className="feature-card__body">
-            <h2 className="feature-card__title">Profile &amp; stats</h2>
+            <h2 className="feature-card__title">In-depth stats</h2>
             <ul>
               <li>Detailed Clash Royale statistics to show off to your friends</li>
-              <li>Add multiple player tags and give them custom names</li>
               <li>Get a profile overview when someone posts a friend link in the server</li>
             </ul>
           </div>
@@ -23,7 +22,7 @@ export function FeaturesPage() {
         <article className="feature-card">
           <div className="feature-card__image-wrap" />
           <div className="feature-card__body">
-            <h2 className="feature-card__title">Battle logs</h2>
+            <h2 className="feature-card__title">View your latest battles</h2>
             <ul>
               <li>View battle history with win/loss statistics</li>
               <li>Get stats based on cards you face and play</li>
@@ -31,14 +30,25 @@ export function FeaturesPage() {
           </div>
         </article>
 
+
         <article className="feature-card">
           <div className="feature-card__image-wrap" />
           <div className="feature-card__body">
-            <h2 className="feature-card__title">Account progress</h2>
+            <h2 className="feature-card__title">Multi-tag support</h2>
             <ul>
-              <li>View your progress including level, mastery and achievement summaries</li>
-              <li>See how much gold you need to max your account</li>
-              <li>See how many cards you can currently upgrade</li>
+              <li>Add multiple player tags and give them custom names</li>
+              <li>Quickly switch between accounts with a single command</li>
+            </ul>
+          </div>
+        </article>
+
+        <article className="feature-card">
+          <div className="feature-card__image-wrap" />
+          <div className="feature-card__body">
+            <h2 className="feature-card__title">Progress at a glance</h2>
+            <ul>
+              <li>Track your level, mastery progress, and achievement milestones</li>
+              <li>See exactly how many cards you can upgrade and what it will cost to max your account</li>
             </ul>
           </div>
         </article>
@@ -48,7 +58,7 @@ export function FeaturesPage() {
           <div className="feature-card__body">
             <h2 className="feature-card__title">Data &amp; privacy</h2>
             <ul>
-              <li>Protect your privacy with private or anonymous responses (anonymised data)</li>
+              <li>Protect your privacy with private or anonymous responses</li>
               <li>Easily view and delete your personal data</li>
             </ul>
           </div>
@@ -57,7 +67,7 @@ export function FeaturesPage() {
         <article className="feature-card">
           <div className="feature-card__image-wrap" />
           <div className="feature-card__body">
-            <h2 className="feature-card__title">Customisation</h2>
+            <h2 className="feature-card__title">Easily customisable</h2>
             <ul>
               <li>Customise your embed colour by reaching in-game milestones</li>
               <li>Unlock custom embed colours by becoming a Patreon supporter</li>
@@ -68,10 +78,21 @@ export function FeaturesPage() {
         <article className="feature-card">
           <div className="feature-card__image-wrap" />
           <div className="feature-card__body">
+            <h2 className="feature-card__title">Stats anywhere</h2>
+            <ul>
+              <li>Works in any server, your DMs, or servers the bot hasn&apos;t even joined</li>
+              <li>No setup required — just invite and start using commands</li>
+            </ul>
+          </div>
+        </article>
+
+        <article className="feature-card">
+          <div className="feature-card__image-wrap" />
+          <div className="feature-card__body">
             <h2 className="feature-card__title">Easy to use</h2>
             <ul>
-              <li>Use commands in your servers, DMs, or even in servers the bot hasn&apos;t joined</li>
               <li>Intuitive design and easy to use commands</li>
+              <li>Navigate responses with interactive buttons, no need to re-run commands</li>
               <li>Clear, easy to understand layout</li>
             </ul>
           </div>
@@ -80,7 +101,7 @@ export function FeaturesPage() {
         <article className="feature-card">
           <div className="feature-card__image-wrap" />
           <div className="feature-card__body">
-            <h2 className="feature-card__title">Support</h2>
+            <h2 className="feature-card__title">Dedicated support</h2>
             <ul>
               <li>
                 Get help and report issues in our{' '}

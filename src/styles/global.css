@@ -70,7 +70,7 @@ body {
   background: transparent;
   transition: background 0.22s ease, box-shadow 0.22s ease;
 }
-/* Frosted bar appears only after the user scrolls (see shared.js) */
+/* Frosted bar when the top bar has scrolled (Layout.jsx toggles class) */
 .top-bar.top-bar--scrolled {
   background: color-mix(in srgb, var(--bg) 72%, transparent);
   backdrop-filter: blur(12px);
@@ -223,7 +223,6 @@ body.theme-switching * {
   letter-spacing: -0.02em;
   color: var(--text);
 }
-/* Hero and CTA (home page) */
 .hero {
   text-align: center;
   position: relative;
@@ -271,7 +270,6 @@ body.theme-switching * {
   opacity: 0.85;
 }
 
-/* ── Decorative card clusters ── */
 .hero-cards {
   position: absolute;
   top: 44%;
@@ -609,8 +607,8 @@ code {
   transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.2s ease;
 }
 .feature-card:hover {
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.22), 0 10px 20px rgba(0, 0, 0, 0.12);
-  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.20), 0 8px 16px rgba(0, 0, 0, 0.11);
+  transform: translateY(-6px) scale(1.015);
   border-color: var(--border);
 }
 .feature-card__image-wrap {
@@ -655,7 +653,6 @@ code {
   }
 }
 
-/* Command list (commands page) */
 .command-list {
   margin: 0.75rem 0 1rem;
   padding: 0;
@@ -677,20 +674,10 @@ code {
   margin-top: 1.25rem;
 }
 
-.commands-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  margin-bottom: 1rem;
-  flex-wrap: wrap;
-}
-.commands-header .page-title {
-  margin-bottom: 0;
-}
+
 .commands-search-wrap {
-  flex-shrink: 0;
   position: relative;
+  margin-bottom: 1.5rem;
 }
 .commands-search-icon {
   position: absolute;
@@ -703,8 +690,19 @@ code {
   pointer-events: none;
   opacity: 0.5;
 }
+/* Hidden span: same typography as input; CommandsPage measures it to set input width */
+.commands-search-mirror {
+  position: absolute;
+  visibility: hidden;
+  pointer-events: none;
+  white-space: pre;
+  font-size: 1rem;
+  font-family: inherit;
+  padding: 0.5rem 0.75rem 0.5rem 2rem;
+}
 .commands-search {
-  width: 11.5rem;
+  display: block;
+  width: min(32rem, 100%);
   padding: 0.5rem 0.75rem 0.5rem 2rem;
   font-size: 1rem;
   font-family: inherit;
@@ -714,14 +712,15 @@ code {
   color: var(--text);
 }
 .commands-search::placeholder {
-  color: var(--text-muted);
-  opacity: 0.45;
+  color: var(--text-body);
+  opacity: 0.65;
 }
 .commands-search:focus {
   outline: none;
   border-color: var(--primary);
   box-shadow: 0 0 0 2px rgba(var(--primary-rgb, 99, 102, 241), 0.3);
 }
+
 .commands-section {
   margin-bottom: 2rem;
 }
@@ -1001,7 +1000,6 @@ footer {
   font-size: 0.8rem;
   max-width: 60rem;
 }
-/* Theme toggle */
 .theme-toggle {
   flex-shrink: 0;
   width: 2.5rem;
@@ -1030,6 +1028,12 @@ footer {
 }
 .theme-toggle .icon-sun {
   display: block;
+}
+[data-theme="light"] .feature-card {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+[data-theme="light"] .feature-card:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.09), 0 3px 6px rgba(0, 0, 0, 0.05);
 }
 [data-theme="light"] .theme-toggle .icon-sun {
   display: none;

@@ -10,7 +10,6 @@ export function RichText({ content }) {
   });
 }
 
-/** Extracts a plain-text string from a RichText content value. */
 export function richToText(content) {
   if (!content) return '';
   if (typeof content === 'string') return content;

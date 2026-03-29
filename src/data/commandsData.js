@@ -1,9 +1,4 @@
-/**
- * Bowler Stats command definitions. Used by CommandsPage and search.
- * - `usage.lines`: formatted by formatUsageLine (supports sub/args/kind/invoke/optional).
- * - `summary` / `usage.note` / `usage.preNote`: plain string or RichText array ({ bold }).
- * - `usage.seeAlso`: [{ id, label }] cross-links. `id` + `commandHeading`: for split commands sharing a name.
- */
+/** CommandsPage + search. usage.lines → formatUsageLine; summary/notes: string or RichText; seeAlso: [{ id, label }]. */
 export const bowlerCommands = [
   {
     category: 'Profile & stats',

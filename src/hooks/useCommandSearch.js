@@ -12,7 +12,6 @@ export function useCommandSearch(commands) {
     return filterAndSortCommands(commands, query);
   }, [commands, query, trimmedQuery]);
 
-  /** `null` when there are no matches; otherwise a map of section title → commands */
   const grouped = useMemo(() => {
     if (filtered.length === 0) return null;
     const isFilteredView = filtered.length !== commands.length || Boolean(trimmedQuery);

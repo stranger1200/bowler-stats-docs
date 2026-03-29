@@ -1,7 +1,6 @@
 import { richToText } from '../components/RichText.jsx';
 import { formatUsageLine } from './formatUsageLine.js';
 
-/** Plain-text from `usage` for search. */
 export function usageSearchText(usage, commandName = '') {
   if (!usage) return '';
   const chunks = [];
@@ -19,7 +18,6 @@ export function usageSearchText(usage, commandName = '') {
   return chunks.join(' ');
 }
 
-/** Lowercase plain-text blob of summary + usage for matching. */
 export function commandSearchBlob(cmd) {
   const heading = cmd.commandHeading || '';
   const raw = `${heading} ${richToText(cmd.summary)} ${usageSearchText(cmd.usage, cmd.name)}`;

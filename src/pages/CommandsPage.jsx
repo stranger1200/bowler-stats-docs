@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { RichText } from '../components/RichText.jsx';
 import { PageTitle } from '../components/PageTitle.jsx';
 import { bowlerCommands } from '../data/commandsData.js';
@@ -153,6 +153,8 @@ export function CommandsPage() {
   const { grouped, searchInputProps, query } = useCommandSearch(bowlerCommands);
   const [expandedNames, setExpandedNames] = useState(() => new Set());
   const { navRef } = useNav();
+  const searchRef = useRef(null);
+  const mirrorRef = useRef(null);
 
   const onToggleExpand = useCallback((name) => {
     setExpandedNames((prev) => {
@@ -182,32 +184,44 @@ export function CommandsPage() {
     setExpandedNames(new Set());
   }, [query]);
 
+  useEffect(() => {
+    const input = searchRef.current;
+    const mirror = mirrorRef.current;
+    if (!input || !mirror) return;
+    mirror.textContent = input.placeholder;
+    const minPx = mirror.offsetWidth * 1.02;
+    mirror.textContent = query || input.placeholder;
+    const MAX_PX = 32 * 16;
+    input.style.width = `${Math.min(Math.max(mirror.offsetWidth, minPx), MAX_PX)}px`;
+  }, [query]);
+
   return (
     <>
       <PageTitle title="Commands: Bowler Stats" />
-      <div className="commands-header">
-        <h1 className="page-title">Commands</h1>
-        <div className="commands-search-wrap">
-          <svg className="commands-search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-            <circle cx="8.5" cy="8.5" r="5.5" stroke="currentColor" strokeWidth="1.6" />
-            <line x1="12.5" y1="12.5" x2="17" y2="17" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
-          </svg>
-          <input
-            type="search"
-            id="commands-search"
-            className="commands-search"
-            placeholder="Search commands"
-            aria-label="Search commands"
-            {...searchInputProps}
-          />
-        </div>
-      </div>
+      <h1 className="page-title">Commands</h1>
       <p className="intro">
         An overview of every command Bowler Stats has to offer. Click any card to see usage examples and available
         options. You can also run <code>/help</code> in Discord to browse commands from within the bot.
         <br /><br />
         In usage examples, <code>[square brackets]</code> are required and <code>(round brackets)</code> are optional.
       </p>
+
+      <div className="commands-search-wrap">
+        <svg className="commands-search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <circle cx="8.5" cy="8.5" r="5.5" stroke="currentColor" strokeWidth="1.6" />
+          <line x1="12.5" y1="12.5" x2="17" y2="17" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+        </svg>
+        <span ref={mirrorRef} className="commands-search-mirror" aria-hidden="true" />
+        <input
+          ref={searchRef}
+          type="search"
+          id="commands-search"
+          className="commands-search"
+          placeholder="Search commands"
+          aria-label="Search commands"
+          {...searchInputProps}
+        />
+      </div>
 
       {!grouped ? (
         <p className="commands-no-results">
